@@ -16,6 +16,11 @@
 		040EFDD11CB7FA5700778918 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDCF1CB7FA5700778918 /* LaunchScreen.storyboard */; };
 		040EFDDC1CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040EFDDB1CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.swift */; };
 		040EFDE71CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040EFDE61CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.swift */; };
+		040EFDFB1CB8071200778918 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDF61CB8071200778918 /* bg.png */; };
+		040EFDFC1CB8071200778918 /* flappy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDF71CB8071200778918 /* flappy1.png */; };
+		040EFDFD1CB8071200778918 /* flappy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDF81CB8071200778918 /* flappy2.png */; };
+		040EFDFE1CB8071200778918 /* pipe1.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDF91CB8071200778918 /* pipe1.png */; };
+		040EFDFF1CB8071200778918 /* pipe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDFA1CB8071200778918 /* pipe2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		040EFDE21CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JasonShepherdFlappyBirdsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		040EFDE61CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JasonShepherdFlappyBirdsUITests.swift; sourceTree = "<group>"; };
 		040EFDE81CB7FA5700778918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		040EFDF61CB8071200778918 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		040EFDF71CB8071200778918 /* flappy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappy1.png; sourceTree = "<group>"; };
+		040EFDF81CB8071200778918 /* flappy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappy2.png; sourceTree = "<group>"; };
+		040EFDF91CB8071200778918 /* pipe1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe1.png; sourceTree = "<group>"; };
+		040EFDFA1CB8071200778918 /* pipe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,11 @@
 		040EFDC11CB7FA5700778918 /* JasonShepherdFlappyBirds */ = {
 			isa = PBXGroup;
 			children = (
+				040EFDF61CB8071200778918 /* bg.png */,
+				040EFDF71CB8071200778918 /* flappy1.png */,
+				040EFDF81CB8071200778918 /* flappy2.png */,
+				040EFDF91CB8071200778918 /* pipe1.png */,
+				040EFDFA1CB8071200778918 /* pipe2.png */,
 				040EFDC21CB7FA5700778918 /* AppDelegate.swift */,
 				040EFDC41CB7FA5700778918 /* GameScene.sks */,
 				040EFDC61CB7FA5700778918 /* GameScene.swift */,
@@ -238,10 +253,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040EFDFD1CB8071200778918 /* flappy2.png in Resources */,
+				040EFDFB1CB8071200778918 /* bg.png in Resources */,
 				040EFDC51CB7FA5700778918 /* GameScene.sks in Resources */,
+				040EFDFE1CB8071200778918 /* pipe1.png in Resources */,
 				040EFDD11CB7FA5700778918 /* LaunchScreen.storyboard in Resources */,
+				040EFDFF1CB8071200778918 /* pipe2.png in Resources */,
 				040EFDCE1CB7FA5700778918 /* Assets.xcassets in Resources */,
 				040EFDCC1CB7FA5700778918 /* Main.storyboard in Resources */,
+				040EFDFC1CB8071200778918 /* flappy1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
