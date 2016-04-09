@@ -10,6 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
+    // Variables to set up some sweet particle effects
+    let birdSparkParticle = SKEmitterNode(fileNamed: "BirdSpark.sks")
+    
     // Variables to store score and game
     var score = 0
     var scoreLabel = SKLabelNode()
@@ -68,6 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // Sets runAction method
             background.runAction(moveBackgroundForever)
+        
+            background.zPosition = -1
             
             movingObjects.addChild(background)
             
@@ -83,6 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Add action object to run indefinately
         let makeBirdFlap = SKAction.repeatActionForever(animation)
         
+        // Update the particle effects
         // Assigns textures nodes
         bird = SKSpriteNode(texture: birdTexture)
         
@@ -104,10 +110,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bird.physicsBody?.contactTestBitMask = objectGroup
         
         // Set z position to "front"
-        bird.zPosition = 10
+        //bird.zPosition = 10
         
         // Adds sprite object to screen
-        self.addChild(bird)
+        addChild(bird)
+        
+        // Add some sweet particle fx to the bird
+        birdSparkParticle!.targetNode = self
+        //birdSparkParticle!.zPosition = 11
+        bird.addChild(birdSparkParticle!)
         
         // Set up ground node
         let ground = SKNode() // no texture or sprite
@@ -150,10 +161,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Combine moving and removing pipes
         let moveAndRemovePipes = SKAction.sequence([movePipes, removePipes])
         
-        
         let pipe1Texture = SKTexture(imageNamed: "pipe1.png")
         let pipe1 = SKSpriteNode(texture: pipe1Texture)
-        pipe1.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipe1.size.height/2 + gapHeight / 2 + pipeOffset)
+        pipe1.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipe1.size.height / 2 + gapHeight / 2 + pipeOffset)
         pipe1.runAction(moveAndRemovePipes)
         pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipe1.size)
         pipe1.physicsBody?.dynamic = false
@@ -162,7 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let pipe2Texture = SKTexture(imageNamed: "pipe2.png")
         let pipe2 = SKSpriteNode(texture: pipe2Texture)
-        pipe2.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) - pipe2.size.height/2 - gapHeight / 2 + pipeOffset)
+        pipe2.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) - pipe2.size.height / 2 - gapHeight / 2 + pipeOffset)
         pipe2.runAction(moveAndRemovePipes)
         pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipe2.size)
         pipe2.physicsBody?.dynamic = false
@@ -174,7 +184,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gap.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipeOffset)
         gap.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, gapHeight))
         gap.runAction(moveAndRemovePipes)
-        gap.physicsBody?.dynamic = false
+        //gap.physicsBody?.dynamic = false
         gap.physicsBody?.collisionBitMask = gapGroup
         gap.physicsBody?.contactTestBitMask = birdGroup
         movingObjects.addChild(gap)
@@ -191,11 +201,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             print("Gap contact")
         } else {
-            if gameOver == 0 {
+            if gameOver == 1 {
                 gameOver = 1
                 movingObjects.speed = 0
                 
-                gameOverLabel.fontName = "HELVITICA"
+                gameOverLabel.fontName = "Helvitica"
                 gameOverLabel.fontSize = 30
                 gameOverLabel.text = "Game Over! Tap to play again."
                 gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
