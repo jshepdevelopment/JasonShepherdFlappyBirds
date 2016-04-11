@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // Variables to set up some sweet particle effects
-    let birdSparkParticle = SKEmitterNode(fileNamed: "BirdSpark.sks")
+    let birdSparkParticle = SKEmitterNode(fileNamed: "DragonSmoke.sks")
     
     // Variables to store score and game
     var score = 0
@@ -79,18 +79,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Create texture objects from image files
-        let birdTexture = SKTexture(imageNamed: "flappy1.png")
-        let birdTexture2 = SKTexture(imageNamed: "flappy2.png")
+        let birdTexture1 = SKTexture(imageNamed: "frame-1.png")
+        let birdTexture2 = SKTexture(imageNamed: "frame-2.png")
+        let birdTexture3 = SKTexture(imageNamed: "frame-3.png")
+        let birdTexture4 = SKTexture(imageNamed: "frame-4.png")
+        
         
         // Create animation object by defining images in an array to display every tenth of a second
-        let animation = SKAction.animateWithTextures([birdTexture, birdTexture2], timePerFrame: 0.1)
+        let animation = SKAction.animateWithTextures([birdTexture1, birdTexture2, birdTexture3, birdTexture4], timePerFrame: 0.1)
         
         // Add action object to run indefinately
         let makeBirdFlap = SKAction.repeatActionForever(animation)
         
         // Update the particle effects
         // Assigns textures nodes
-        bird = SKSpriteNode(texture: birdTexture)
+        bird = SKSpriteNode(texture: birdTexture1)
         
         // Assigns positions for the sprite nodes
         bird.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
@@ -135,8 +138,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Timer to call makePipes
         let timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("makePipes"), userInfo: nil, repeats: true)
-        
-
         
     }
     
@@ -184,8 +185,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gap.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipeOffset)
         gap.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, gapHeight))
         gap.runAction(moveAndRemovePipes)
-        //gap.physicsBody?.dynamic = false
+        gap.physicsBody?.dynamic = false
         gap.physicsBody?.collisionBitMask = gapGroup
+        gap.physicsBody?.categoryBitMask = gapGroup
         gap.physicsBody?.contactTestBitMask = birdGroup
         movingObjects.addChild(gap)
         
@@ -196,7 +198,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Contacting a gap
         if contact.bodyA.categoryBitMask == gapGroup || contact.bodyB.categoryBitMask == gapGroup {
-            score++
+            score += 1
             scoreLabel.text = "\(score)"
             
             print("Gap contact")

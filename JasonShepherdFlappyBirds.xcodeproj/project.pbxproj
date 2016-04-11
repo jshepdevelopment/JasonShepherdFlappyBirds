@@ -23,6 +23,11 @@
 		040EFDFF1CB8071200778918 /* pipe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDFA1CB8071200778918 /* pipe2.png */; };
 		040EFE021CB83A6400778918 /* BirdSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE001CB83A6400778918 /* BirdSpark.sks */; };
 		040EFE031CB83A6400778918 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE011CB83A6400778918 /* spark.png */; };
+		040EFE081CB93CD800778918 /* frame-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE041CB93CD800778918 /* frame-1.png */; };
+		040EFE091CB93CD800778918 /* frame-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE051CB93CD800778918 /* frame-2.png */; };
+		040EFE0A1CB93CD800778918 /* frame-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE061CB93CD800778918 /* frame-3.png */; };
+		040EFE0B1CB93CD800778918 /* frame-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE071CB93CD800778918 /* frame-4.png */; };
+		040EFE191CBAB57700778918 /* DragonSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE181CBAB57700778918 /* DragonSmoke.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,11 @@
 		040EFDFA1CB8071200778918 /* pipe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe2.png; sourceTree = "<group>"; };
 		040EFE001CB83A6400778918 /* BirdSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BirdSpark.sks; sourceTree = "<group>"; };
 		040EFE011CB83A6400778918 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		040EFE041CB93CD800778918 /* frame-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-1.png"; sourceTree = "<group>"; };
+		040EFE051CB93CD800778918 /* frame-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-2.png"; sourceTree = "<group>"; };
+		040EFE061CB93CD800778918 /* frame-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-3.png"; sourceTree = "<group>"; };
+		040EFE071CB93CD800778918 /* frame-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-4.png"; sourceTree = "<group>"; };
+		040EFE181CBAB57700778918 /* DragonSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DragonSmoke.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,7 @@
 		040EFDB61CB7FA5600778918 = {
 			isa = PBXGroup;
 			children = (
+				040EFE181CBAB57700778918 /* DragonSmoke.sks */,
 				040EFE001CB83A6400778918 /* BirdSpark.sks */,
 				040EFE011CB83A6400778918 /* spark.png */,
 				040EFDC11CB7FA5700778918 /* JasonShepherdFlappyBirds */,
@@ -117,6 +128,10 @@
 		040EFDC11CB7FA5700778918 /* JasonShepherdFlappyBirds */ = {
 			isa = PBXGroup;
 			children = (
+				040EFE041CB93CD800778918 /* frame-1.png */,
+				040EFE051CB93CD800778918 /* frame-2.png */,
+				040EFE061CB93CD800778918 /* frame-3.png */,
+				040EFE071CB93CD800778918 /* frame-4.png */,
 				040EFDF61CB8071200778918 /* bg.png */,
 				040EFDF71CB8071200778918 /* flappy1.png */,
 				040EFDF81CB8071200778918 /* flappy2.png */,
@@ -260,12 +275,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				040EFE031CB83A6400778918 /* spark.png in Resources */,
+				040EFE0A1CB93CD800778918 /* frame-3.png in Resources */,
 				040EFDFD1CB8071200778918 /* flappy2.png in Resources */,
 				040EFDFB1CB8071200778918 /* bg.png in Resources */,
 				040EFE021CB83A6400778918 /* BirdSpark.sks in Resources */,
 				040EFDC51CB7FA5700778918 /* GameScene.sks in Resources */,
 				040EFDFE1CB8071200778918 /* pipe1.png in Resources */,
+				040EFE0B1CB93CD800778918 /* frame-4.png in Resources */,
+				040EFE191CBAB57700778918 /* DragonSmoke.sks in Resources */,
+				040EFE091CB93CD800778918 /* frame-2.png in Resources */,
 				040EFDD11CB7FA5700778918 /* LaunchScreen.storyboard in Resources */,
+				040EFE081CB93CD800778918 /* frame-1.png in Resources */,
 				040EFDFF1CB8071200778918 /* pipe2.png in Resources */,
 				040EFDCE1CB7FA5700778918 /* Assets.xcassets in Resources */,
 				040EFDCC1CB7FA5700778918 /* Main.storyboard in Resources */,
