@@ -28,6 +28,7 @@
 		040EFE0A1CB93CD800778918 /* frame-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE061CB93CD800778918 /* frame-3.png */; };
 		040EFE0B1CB93CD800778918 /* frame-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE071CB93CD800778918 /* frame-4.png */; };
 		040EFE191CBAB57700778918 /* DragonSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE181CBAB57700778918 /* DragonSmoke.sks */; };
+		047098291CBBF30100765384 /* fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = 047098281CBBF30100765384 /* fireball.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		040EFE061CB93CD800778918 /* frame-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-3.png"; sourceTree = "<group>"; };
 		040EFE071CB93CD800778918 /* frame-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-4.png"; sourceTree = "<group>"; };
 		040EFE181CBAB57700778918 /* DragonSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DragonSmoke.sks; sourceTree = "<group>"; };
+		047098281CBBF30100765384 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		040EFDC11CB7FA5700778918 /* JasonShepherdFlappyBirds */ = {
 			isa = PBXGroup;
 			children = (
+				047098281CBBF30100765384 /* fireball.png */,
 				040EFE041CB93CD800778918 /* frame-1.png */,
 				040EFE051CB93CD800778918 /* frame-2.png */,
 				040EFE061CB93CD800778918 /* frame-3.png */,
@@ -274,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047098291CBBF30100765384 /* fireball.png in Resources */,
 				040EFE031CB83A6400778918 /* spark.png in Resources */,
 				040EFE0A1CB93CD800778918 /* frame-3.png in Resources */,
 				040EFDFD1CB8071200778918 /* flappy2.png in Resources */,
@@ -543,6 +547,7 @@
 				040EFDED1CB7FA5700778918 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		040EFDEE1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirdsTests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +556,7 @@
 				040EFDF01CB7FA5700778918 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		040EFDF11CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirdsUITests" */ = {
 			isa = XCConfigurationList;
@@ -559,6 +565,7 @@
 				040EFDF31CB7FA5700778918 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

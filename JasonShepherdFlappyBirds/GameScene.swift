@@ -11,7 +11,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // Variables to set up some sweet particle effects
-    let birdSparkParticle = SKEmitterNode(fileNamed: "DragonSmoke.sks")
+    let dragonSmokeParticle = SKEmitterNode(fileNamed: "DragonSmoke.sks")
     
     // Variables to store score and game
     var score = 0
@@ -23,7 +23,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var movingObjects = SKNode()
     
     // Create the sprite nodes
-    var bird = SKSpriteNode()
+    var dragon = SKSpriteNode()
+    var fireBall = SKSpriteNode()
     var background = SKSpriteNode()
     var labelHolder = SKSpriteNode()
 
@@ -33,6 +34,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let gapGroup:UInt32 = 0 << 3 // bitwise mask
     
     override func didMoveToView(view: SKView) {
+        
+        // Set up gesture recognizer
+        let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
+        swipeRight.direction = .Right
+        view.addGestureRecognizer(swipeRight)
+        
         
         // Set up world physics
         self.physicsWorld.contactDelegate = self
@@ -71,57 +78,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // Sets runAction method
             background.runAction(moveBackgroundForever)
-        
             background.zPosition = -1
-            
             movingObjects.addChild(background)
             
         }
         
         // Create texture objects from image files
-        let birdTexture1 = SKTexture(imageNamed: "frame-1.png")
-        let birdTexture2 = SKTexture(imageNamed: "frame-2.png")
-        let birdTexture3 = SKTexture(imageNamed: "frame-3.png")
-        let birdTexture4 = SKTexture(imageNamed: "frame-4.png")
-        
+        let dragonTexture1 = SKTexture(imageNamed: "frame-1.png")
+        let dragonTexture2 = SKTexture(imageNamed: "frame-2.png")
+        let dragonTexture3 = SKTexture(imageNamed: "frame-3.png")
+        let dragonTexture4 = SKTexture(imageNamed: "frame-4.png")
         
         // Create animation object by defining images in an array to display every tenth of a second
-        let animation = SKAction.animateWithTextures([birdTexture1, birdTexture2, birdTexture3, birdTexture4], timePerFrame: 0.1)
+        let animation = SKAction.animateWithTextures([dragonTexture1, dragonTexture2, dragonTexture3, dragonTexture4], timePerFrame: 0.1)
         
         // Add action object to run indefinately
-        let makeBirdFlap = SKAction.repeatActionForever(animation)
+        let makeDragonFlap = SKAction.repeatActionForever(animation)
         
         // Update the particle effects
         // Assigns textures nodes
-        bird = SKSpriteNode(texture: birdTexture1)
+        dragon = SKSpriteNode(texture: dragonTexture1)
         
         // Assigns positions for the sprite nodes
-        bird.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        dragon.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
         
         // Sets runAction method
-        bird.runAction(makeBirdFlap)
+        dragon.runAction(makeDragonFlap)
         
         // Add physics to bird
-        bird.physicsBody = SKPhysicsBody(circleOfRadius:bird.size.height / 2)
+        dragon.physicsBody = SKPhysicsBody(circleOfRadius:dragon.size.height / 2)
         // React to gravity
-        bird.physicsBody?.dynamic = true
+        dragon.physicsBody?.dynamic = true
         // Don't spin around
-        bird.physicsBody?.allowsRotation = false
+        dragon.physicsBody?.allowsRotation = false
         
         // Create collision groups
-        bird.physicsBody?.categoryBitMask = birdGroup
-        bird.physicsBody?.contactTestBitMask = objectGroup
-        
-        // Set z position to "front"
-        //bird.zPosition = 10
+        dragon.physicsBody?.categoryBitMask = birdGroup
+        dragon.physicsBody?.contactTestBitMask = objectGroup
         
         // Adds sprite object to screen
-        addChild(bird)
+        addChild(dragon)
         
-        // Add some sweet particle fx to the bird
-        birdSparkParticle!.targetNode = self
-        //birdSparkParticle!.zPosition = 11
-        bird.addChild(birdSparkParticle!)
+        // Add some sweet particle fx to the dragon
+        dragonSmokeParticle!.targetNode = self
+        dragon.addChild(dragonSmokeParticle!)
         
         // Set up ground node
         let ground = SKNode() // no texture or sprite
@@ -137,7 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(ground)
         
         // Timer to call makePipes
-        let timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("makePipes"), userInfo: nil, repeats: true)
+        _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(GameScene.makePipes), userInfo: nil, repeats: true)
         
     }
     
@@ -145,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Set up pipe nodes
         // Pipe gap
-        let gapHeight = bird.size.height * 4
+        let gapHeight = dragon.size.height * 4
         
         // Range of pipe movement - arc4random is from standard C library
         // Random number between 0 and half of screen size
@@ -221,13 +221,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if gameOver == 0 {
             // Set the speed of bird to zero
-            bird.physicsBody?.velocity = CGVectorMake(0,0)
+            dragon.physicsBody?.velocity = CGVectorMake(0,0)
             
             // Apply an impulse or force to the bird
-            bird.physicsBody?.applyImpulse(CGVectorMake(0,50))
+            dragon.physicsBody?.applyImpulse(CGVectorMake(0,50))
         }
     }
    
+    func swipedRight(sender:UISwipeGestureRecognizer){
+        print("Swiped right")
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
