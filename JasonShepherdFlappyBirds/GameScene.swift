@@ -24,14 +24,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Create the sprite nodes
     var dragon = SKSpriteNode()
-    var fireBall = SKSpriteNode()
+    var fireball = SKSpriteNode()
     var background = SKSpriteNode()
     var labelHolder = SKSpriteNode()
 
     // Collision groups
-    let birdGroup:UInt32 = 1
-    let objectGroup:UInt32 = 2
-    let gapGroup:UInt32 = 0 << 3 // bitwise mask
+    let dragonGroup:UInt32 = 0x1 << 1
+    let objectGroup:UInt32 = 0x1 << 2
+    let gapGroup:UInt32 = 0x1 << 3
     
     override func didMoveToView(view: SKView) {
         
@@ -113,7 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dragon.physicsBody?.allowsRotation = false
         
         // Create collision groups
-        dragon.physicsBody?.categoryBitMask = birdGroup
+        dragon.physicsBody?.categoryBitMask = dragonGroup
         dragon.physicsBody?.contactTestBitMask = objectGroup
         
         // Adds sprite object to screen
@@ -188,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gap.physicsBody?.dynamic = false
         gap.physicsBody?.collisionBitMask = gapGroup
         gap.physicsBody?.categoryBitMask = gapGroup
-        gap.physicsBody?.contactTestBitMask = birdGroup
+        gap.physicsBody?.contactTestBitMask = dragonGroup
         movingObjects.addChild(gap)
         
     }
