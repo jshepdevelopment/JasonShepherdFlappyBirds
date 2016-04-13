@@ -113,7 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dragon.runAction(makeDragonFlap)
         
         // Add physics to bird
-        dragon.physicsBody = SKPhysicsBody(circleOfRadius:dragon.size.height / 2)
+        dragon.physicsBody = SKPhysicsBody(rectangleOfSize: dragon.size)
         // React to gravity
         dragon.physicsBody?.dynamic = true
         // Don't spin around
@@ -121,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Create collision groups
         dragon.physicsBody?.categoryBitMask = dragonGroup
-        dragon.physicsBody?.contactTestBitMask = objectGroup
+        dragon.physicsBody?.contactTestBitMask = baddyGroup
         
         // Adds sprite object to screen
         addChild(dragon)
@@ -221,16 +221,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //print("first body group is is \(firstBody.categoryBitMask)")
         //print("second body group is \(secondBody.categoryBitMask)")
         
-        // Fireball collision
+        // Fireball collision with baddy
         if firstBody.categoryBitMask == 3 || secondBody.categoryBitMask == 3 {
             if firstBody.categoryBitMask == 3 {
                 print("firstbody fireball collision")
                 secondBody.node?.removeFromParent()
                 //print("first body group is is \(firstBody.categoryBitMask)")
                 //print("second body group is \(secondBody.categoryBitMask)")
-                //contact.bodyB.node!.removeFromParent()
-            } else {
-                //contact.bodyA.node!.removeFromParent()
+                //contact.bodyB.node!.removeFromParent
+            }
+        }
+        
+        // Dragon and baddy collision
+        if firstBody.categoryBitMask == 1 || secondBody.categoryBitMask == 1 {
+            print("dragon collided")
+            if firstBody.categoryBitMask == 4 || secondBody.categoryBitMask == 4 {
+                print("dragon baddy collision")
             }
         }
         
@@ -240,19 +246,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = "\(score)"
             
             print("Gap contact")
-        } else {
-            if gameOver == 1 {
-                gameOver = 1
-                movingObjects.speed = 0
-                
-                gameOverLabel.fontName = "Helvitica"
-                gameOverLabel.fontSize = 30
-                gameOverLabel.text = "Game Over! Tap to play again."
-                gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-                labelHolder.addChild(gameOverLabel)
-                
-            }
         }
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -300,10 +295,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let moveAndRemoveBaddy = SKAction.sequence([moveBaddy, removeBaddy])
         
         baddy.runAction(moveAndRemoveBaddy)
-        baddy.physicsBody = SKPhysicsBody(rectangleOfSize: fireball.size)
+        baddy.physicsBody = SKPhysicsBody(rectangleOfSize: baddy.size)
         baddy.physicsBody?.dynamic = false
         baddy.physicsBody?.categoryBitMask = baddyGroup
-        baddy.physicsBody?.contactTestBitMask = fireballGroup
+        baddy.physicsBody?.contactTestBitMask = dragonGroup
         
         //print("baddy.position.x \(baddy.position.x)")
 
@@ -313,5 +308,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        // Check for game over
+        if gameOver == 1 {
+            movingObjects.speed = 0
+            gameOverLabel.fontName = "Helvitica"
+            gameOverLabel.fontSize = 30
+            gameOverLabel.text = "Game Over! Tap to play again."
+            gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+            labelHolder.addChild(gameOverLabel)
+            
+            }
     }
 }
