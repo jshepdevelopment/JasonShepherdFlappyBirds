@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dragon = SKSpriteNode(texture: dragonTexture1)
         
         // Assigns positions for the sprite nodes
-        dragon.position = CGPoint(x: CGRectGetMidX(self.frame), y: 50)// CGRectGetMidY(self.frame))
+        dragon.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
         
         // Sets runAction method
         dragon.runAction(makeDragonFlap)
@@ -115,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Add physics to bird
         dragon.physicsBody = SKPhysicsBody(circleOfRadius:dragon.size.height / 2)
         // React to gravity
-        dragon.physicsBody?.dynamic = false
+        dragon.physicsBody?.dynamic = true
         // Don't spin around
         dragon.physicsBody?.allowsRotation = false
         
@@ -258,10 +258,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         if gameOver == 0 {
-            // Set the speed of bird to zero
+            // Set the speed of dragon to zero
             dragon.physicsBody?.velocity = CGVectorMake(0,0)
             
-            // Apply an impulse or force to the bird
+            // Apply an impulse or force to the dragon
             dragon.physicsBody?.applyImpulse(CGVectorMake(0,50))
         }
     }
@@ -290,9 +290,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnBaddy() {
         
         // Random number between 0 and half of screen size
-        //let movementAmount = arc4random() % UInt32(self.frame.size.height / 2)
+        let yPosition = arc4random() % UInt32(self.frame.size.height)
+        
         baddy = SKSpriteNode(texture: baddyTexture)
-        baddy.position = CGPoint(x: self.frame.size.width, y: 50.0)
+        baddy.position = CGPoint(x: self.frame.size.width, y: CGFloat(yPosition))
         // Moving the bad guy
         let moveBaddy = SKAction.moveByX(-self.frame.size.width * 3, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
         let removeBaddy = SKAction.removeFromParent()
