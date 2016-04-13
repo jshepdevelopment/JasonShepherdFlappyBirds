@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dragon = SKSpriteNode(texture: dragonTexture1)
         
         // Assigns positions for the sprite nodes
-        dragon.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        dragon.position = CGPoint(x: CGRectGetMidX(self.frame), y: 50)// CGRectGetMidY(self.frame))
         
         // Sets runAction method
         dragon.runAction(makeDragonFlap)
@@ -115,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Add physics to bird
         dragon.physicsBody = SKPhysicsBody(circleOfRadius:dragon.size.height / 2)
         // React to gravity
-        dragon.physicsBody?.dynamic = true
+        dragon.physicsBody?.dynamic = false
         // Don't spin around
         dragon.physicsBody?.allowsRotation = false
         
@@ -146,7 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(GameScene.makePipes), userInfo: nil, repeats: true)
         
         // Timer to spawn baddy
-        _ = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(GameScene.spawnBaddy), userInfo: nil, repeats: true)
+        _ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameScene.spawnBaddy), userInfo: nil, repeats: true)
         
     }
     
@@ -225,6 +225,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == 3 || secondBody.categoryBitMask == 3 {
             if firstBody.categoryBitMask == 3 {
                 print("firstbody fireball collision")
+                secondBody.node?.removeFromParent()
+                //print("first body group is is \(firstBody.categoryBitMask)")
+                //print("second body group is \(secondBody.categoryBitMask)")
                 //contact.bodyB.node!.removeFromParent()
             } else {
                 //contact.bodyA.node!.removeFromParent()
@@ -296,11 +299,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let moveAndRemoveBaddy = SKAction.sequence([moveBaddy, removeBaddy])
         
         baddy.runAction(moveAndRemoveBaddy)
-        baddy.physicsBody = SKPhysicsBody(rectangleOfSize: baddy.size)
-        baddy.physicsBody?.dynamic = true
+        baddy.physicsBody = SKPhysicsBody(rectangleOfSize: fireball.size)
+        baddy.physicsBody?.dynamic = false
         baddy.physicsBody?.categoryBitMask = baddyGroup
         baddy.physicsBody?.contactTestBitMask = fireballGroup
         
+        //print("baddy.position.x \(baddy.position.x)")
 
         
         movingObjects.addChild(baddy)
