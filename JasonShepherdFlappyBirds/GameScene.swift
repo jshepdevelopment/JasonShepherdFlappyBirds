@@ -25,21 +25,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Create the sprite nodes
     var dragon = SKSpriteNode()
     var fireball = SKSpriteNode()
+    var baddy = SKSpriteNode()
     var background = SKSpriteNode()
     var labelHolder = SKSpriteNode()
+    var pipe1 = SKSpriteNode()
+    var pipe2 = SKSpriteNode()
 
     // Collision groups
-    let dragonGroup:UInt32 = 0x1 << 1
-    let objectGroup:UInt32 = 0x1 << 2
-    let gapGroup:UInt32 = 0x1 << 3
+    let dragonGroup:UInt32 = 1
+    let objectGroup:UInt32 =  2
+    let fireballGroup:UInt32 = 3
+    let baddyGroup:UInt32 = 4
+    let gapGroup:UInt32 = 0 << 5
     
+    // Load texture assets here to prevent in-game lag
+    let pipe1Texture = SKTexture(imageNamed: "tower1.png")
+    let pipe2Texture = SKTexture(imageNamed: "tower2.png")
+    let dragonTexture1 = SKTexture(imageNamed: "frame-1.png")
+    let dragonTexture2 = SKTexture(imageNamed: "frame-2.png")
+    let dragonTexture3 = SKTexture(imageNamed: "frame-3.png")
+    let dragonTexture4 = SKTexture(imageNamed: "frame-4.png")
+    let fireballTexture = SKTexture(imageNamed: "fireball.png")
+    let baddyTexture = SKTexture(imageNamed: "flappy1.png")
+
     override func didMoveToView(view: SKView) {
         
         // Set up gesture recognizer
         let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
         swipeRight.direction = .Right
         view.addGestureRecognizer(swipeRight)
-        
         
         // Set up world physics
         self.physicsWorld.contactDelegate = self
@@ -83,19 +97,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        // Create texture objects from image files
-        let dragonTexture1 = SKTexture(imageNamed: "frame-1.png")
-        let dragonTexture2 = SKTexture(imageNamed: "frame-2.png")
-        let dragonTexture3 = SKTexture(imageNamed: "frame-3.png")
-        let dragonTexture4 = SKTexture(imageNamed: "frame-4.png")
-        
         // Create animation object by defining images in an array to display every tenth of a second
         let animation = SKAction.animateWithTextures([dragonTexture1, dragonTexture2, dragonTexture3, dragonTexture4], timePerFrame: 0.1)
         
         // Add action object to run indefinately
         let makeDragonFlap = SKAction.repeatActionForever(animation)
         
-        // Update the particle effects
         // Assigns textures nodes
         dragon = SKSpriteNode(texture: dragonTexture1)
         
@@ -130,14 +137,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.size.width, 1))
         // Ground doesn't react to gravity
         ground.physicsBody?.dynamic = false
-        
         ground.physicsBody?.categoryBitMask = objectGroup
         
-        //Add to screen
+        // Add to screen
         self.addChild(ground)
         
         // Timer to call makePipes
         _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(GameScene.makePipes), userInfo: nil, repeats: true)
+        
+        // Timer to spawn baddy
+        _ = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(GameScene.spawnBaddy), userInfo: nil, repeats: true)
         
     }
     
@@ -146,6 +155,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set up pipe nodes
         // Pipe gap
         let gapHeight = dragon.size.height * 4
+        
+        // Assign nodes here to increase speed
+        pipe1 = SKSpriteNode(texture: pipe1Texture)
+        pipe2 = SKSpriteNode(texture: pipe2Texture)
         
         // Range of pipe movement - arc4random is from standard C library
         // Random number between 0 and half of screen size
@@ -162,22 +175,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Combine moving and removing pipes
         let moveAndRemovePipes = SKAction.sequence([movePipes, removePipes])
         
-        let pipe1Texture = SKTexture(imageNamed: "pipe1.png")
-        let pipe1 = SKSpriteNode(texture: pipe1Texture)
         pipe1.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipe1.size.height / 2 + gapHeight / 2 + pipeOffset)
         pipe1.runAction(moveAndRemovePipes)
         pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipe1.size)
         pipe1.physicsBody?.dynamic = false
         pipe1.physicsBody?.categoryBitMask = objectGroup
+        pipe1.physicsBody?.contactTestBitMask = fireballGroup
         movingObjects.addChild(pipe1)
-        
-        let pipe2Texture = SKTexture(imageNamed: "pipe2.png")
-        let pipe2 = SKSpriteNode(texture: pipe2Texture)
+
         pipe2.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) - pipe2.size.height / 2 - gapHeight / 2 + pipeOffset)
         pipe2.runAction(moveAndRemovePipes)
         pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipe2.size)
         pipe2.physicsBody?.dynamic = false
         pipe2.physicsBody?.categoryBitMask = objectGroup
+        pipe2.physicsBody?.contactTestBitMask = fireballGroup
         movingObjects.addChild(pipe2)
         
         // Make a scoring gap
@@ -194,7 +205,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
-        print("Contact")
+        
+        //print("Contact")
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        //print("first body group is is \(firstBody.categoryBitMask)")
+        //print("second body group is \(secondBody.categoryBitMask)")
+        
+        // Fireball collision
+        if firstBody.categoryBitMask == 3 || secondBody.categoryBitMask == 3 {
+            if firstBody.categoryBitMask == 3 {
+                print("firstbody fireball collision")
+                //contact.bodyB.node!.removeFromParent()
+            } else {
+                //contact.bodyA.node!.removeFromParent()
+            }
+        }
         
         // Contacting a gap
         if contact.bodyA.categoryBitMask == gapGroup || contact.bodyB.categoryBitMask == gapGroup {
@@ -230,6 +265,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     func swipedRight(sender:UISwipeGestureRecognizer){
         print("Swiped right")
+        launchFireball()
+    }
+    
+    func launchFireball() {
+        
+        // Moving the fireballs
+        let moveFireball = SKAction.moveByX(self.frame.size.width * 3, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
+
+        fireball = SKSpriteNode(texture: fireballTexture)
+        fireball.position = CGPoint(x: dragon.position.x, y: dragon.position.y)
+        fireball.runAction(moveFireball)
+        fireball.physicsBody = SKPhysicsBody(rectangleOfSize: fireball.size)
+        fireball.physicsBody?.dynamic = true
+        fireball.physicsBody?.categoryBitMask = fireballGroup
+        fireball.physicsBody?.contactTestBitMask = baddyGroup
+        
+        movingObjects.addChild(fireball)
+    }
+    
+    func spawnBaddy() {
+        
+        // Random number between 0 and half of screen size
+        //let movementAmount = arc4random() % UInt32(self.frame.size.height / 2)
+        baddy = SKSpriteNode(texture: baddyTexture)
+        baddy.position = CGPoint(x: self.frame.size.width, y: 50.0)
+        // Moving the bad guy
+        let moveBaddy = SKAction.moveByX(-self.frame.size.width * 3, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
+        let removeBaddy = SKAction.removeFromParent()
+        let moveAndRemoveBaddy = SKAction.sequence([moveBaddy, removeBaddy])
+        
+        baddy.runAction(moveAndRemoveBaddy)
+        baddy.physicsBody = SKPhysicsBody(rectangleOfSize: baddy.size)
+        baddy.physicsBody?.dynamic = true
+        baddy.physicsBody?.categoryBitMask = baddyGroup
+        baddy.physicsBody?.contactTestBitMask = fireballGroup
+        
+
+        
+        movingObjects.addChild(baddy)
     }
     
     override func update(currentTime: CFTimeInterval) {

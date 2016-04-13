@@ -29,6 +29,8 @@
 		040EFE0B1CB93CD800778918 /* frame-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE071CB93CD800778918 /* frame-4.png */; };
 		040EFE191CBAB57700778918 /* DragonSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE181CBAB57700778918 /* DragonSmoke.sks */; };
 		047098291CBBF30100765384 /* fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = 047098281CBBF30100765384 /* fireball.png */; };
+		04A1AFE41CBE9561009559EE /* tower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A1AFE21CBE9561009559EE /* tower1.png */; };
+		04A1AFE51CBE9561009559EE /* tower2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A1AFE31CBE9561009559EE /* tower2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		040EFE071CB93CD800778918 /* frame-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-4.png"; sourceTree = "<group>"; };
 		040EFE181CBAB57700778918 /* DragonSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DragonSmoke.sks; sourceTree = "<group>"; };
 		047098281CBBF30100765384 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
+		04A1AFE21CBE9561009559EE /* tower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower1.png; sourceTree = "<group>"; };
+		04A1AFE31CBE9561009559EE /* tower2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 				040EFDF81CB8071200778918 /* flappy2.png */,
 				040EFDF91CB8071200778918 /* pipe1.png */,
 				040EFDFA1CB8071200778918 /* pipe2.png */,
+				04A1AFE21CBE9561009559EE /* tower1.png */,
+				04A1AFE31CBE9561009559EE /* tower2.png */,
 				040EFDC21CB7FA5700778918 /* AppDelegate.swift */,
 				040EFDC41CB7FA5700778918 /* GameScene.sks */,
 				040EFDC61CB7FA5700778918 /* GameScene.swift */,
@@ -280,8 +286,10 @@
 				047098291CBBF30100765384 /* fireball.png in Resources */,
 				040EFE031CB83A6400778918 /* spark.png in Resources */,
 				040EFE0A1CB93CD800778918 /* frame-3.png in Resources */,
+				04A1AFE51CBE9561009559EE /* tower2.png in Resources */,
 				040EFDFD1CB8071200778918 /* flappy2.png in Resources */,
 				040EFDFB1CB8071200778918 /* bg.png in Resources */,
+				04A1AFE41CBE9561009559EE /* tower1.png in Resources */,
 				040EFE021CB83A6400778918 /* BirdSpark.sks in Resources */,
 				040EFDC51CB7FA5700778918 /* GameScene.sks in Resources */,
 				040EFDFE1CB8071200778918 /* pipe1.png in Resources */,
