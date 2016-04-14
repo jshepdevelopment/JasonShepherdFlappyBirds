@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Variables to set up some sweet particle effects
     let dragonSmokeParticle = SKEmitterNode(fileNamed: "DragonSmoke.sks")
     let fireTrailParticle = SKEmitterNode(fileNamed: "FireSpark.sks")
+    let baddyTrailParticle = SKEmitterNode(fileNamed: "Magic.sks")
 
     
     // Variables to store score and game
@@ -32,6 +33,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var labelHolder = SKSpriteNode()
     var pipe1 = SKSpriteNode()
     var pipe2 = SKSpriteNode()
+    
+    
 
     // Collision groups
     let dragonGroup:UInt32 = 1
@@ -59,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Set up world physics
         self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = CGVectorMake(0, -2)
+        self.physicsWorld.gravity = CGVectorMake(0, -3)
         
         self.addChild(movingObjects)
         
@@ -115,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dragon.runAction(makeDragonFlap)
         
         // Add physics to bird
-        dragon.physicsBody = SKPhysicsBody(rectangleOfSize: dragon.size)
+        dragon.physicsBody = SKPhysicsBody(circleOfRadius: dragon.size.width/2)
         // React to gravity
         dragon.physicsBody?.dynamic = true
         // Don't spin around
@@ -132,18 +135,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dragonSmokeParticle!.targetNode = self
         dragon.addChild(dragonSmokeParticle!)
         
-        // Set up ground node
-        let ground = SKNode() // no texture or sprite
-        ground.position = CGPointMake(0,0) // start bottom left
-        // Width of screen is ground as rectangle
-        ground.physicsBody = SKPhysicsBody(circleOfRadius: dragon.size.width/2)
-        // Ground doesn't react to gravity
-        ground.physicsBody?.dynamic = false
-        ground.physicsBody?.categoryBitMask = objectGroup
-        
-        // Add to screen
-        self.addChild(ground)
-        
         // Timer to call makePipes
         _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(GameScene.makePipes), userInfo: nil, repeats: true)
         
@@ -157,6 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set up pipe nodes
         // Pipe gap
         let gapHeight = dragon.size.height * 4
+        let gap = SKNode()
         
         // Assign nodes here to increase speed
         pipe1 = SKSpriteNode(texture: pipe1Texture)
@@ -194,7 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         movingObjects.addChild(pipe2)
         
         // Make a scoring gap
-        let gap = SKNode()
+
         gap.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipeOffset)
         gap.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, gapHeight))
         gap.runAction(moveAndRemovePipes)
@@ -202,6 +194,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gap.physicsBody?.collisionBitMask = gapGroup
         gap.physicsBody?.categoryBitMask = gapGroup
         gap.physicsBody?.contactTestBitMask = dragonGroup
+        
+        if gameOver == 1 {
+            gap.position = CGPointMake(0.0, 0.0)
+        }
+        
         movingObjects.addChild(gap)
         
     }
@@ -225,6 +222,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Fireball collision with baddy
         if firstBody.categoryBitMask == 3 || secondBody.categoryBitMask == 3 {
+            
+            // Remove fireballs on collision, unless it's a gap
+            if firstBody.categoryBitMask == 3 && secondBody.categoryBitMask != gapGroup {
+               firstBody.node?.removeFromParent()
+            }
+            if secondBody.categoryBitMask == 3 && firstBody.categoryBitMask != gapGroup{
+                secondBody.node?.removeFromParent()
+            }
+            
             if firstBody.categoryBitMask == 3 {
                 print("firstbody fireball collision")
                 score+=1
@@ -248,7 +254,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if contact.bodyA.categoryBitMask == gapGroup || contact.bodyB.categoryBitMask == gapGroup {
             score += 1
             scoreLabel.text = "\(score)"
-            
             print("Gap contact")
         }
 
@@ -261,18 +266,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             dragon.physicsBody?.velocity = CGVectorMake(0,0)
             
             // Apply an impulse or force to the dragon
-            dragon.physicsBody?.applyImpulse(CGVectorMake(0,50))
+            dragon.physicsBody?.applyImpulse(CGVectorMake(0,75))
         }
         
         if gameOver == 1 {
             gameOver = 0
             gameOverLabel.removeFromParent()
-            baddy.removeFromParent()
-            pipe1.removeFromParent()
-            pipe2.removeFromParent()
+            
             score = 0
             scoreLabel.text = "0"
             dragon.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+            addChild(dragon)
             movingObjects.speed = 1
         }
     }
@@ -288,10 +292,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fireTrailParticle?.removeFromParent()
         
         // Moving the fireballs
-        let moveFireball = SKAction.moveByX(1 , y: 0, duration: 0)
+        let moveFireball = SKAction.moveByX(0.01 , y: 0, duration: 0)
 
         fireball = SKSpriteNode(texture: fireballTexture)
-        fireball.position = CGPoint(x: dragon.position.x+dragon.size.width, y: dragon.position.y)
+        fireball.position = CGPoint(x: dragon.position.x+0.01, y: dragon.position.y)
         fireball.runAction(moveFireball)
         fireball.physicsBody = SKPhysicsBody(circleOfRadius: fireball.size.width)
         fireball.physicsBody?.dynamic = true
@@ -300,7 +304,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fireball.physicsBody?.contactTestBitMask = baddyGroup
         
         movingObjects.addChild(fireball)
-        fireball.physicsBody?.applyImpulse(CGVectorMake(50,0))
+        fireball.physicsBody?.applyImpulse(CGVectorMake(30,0))
         
         // Add some sweet particle fx to the dragon
         fireTrailParticle!.targetNode = self
@@ -308,6 +312,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnBaddy() {
+        
+        baddyTrailParticle?.removeFromParent()
         
         // Random number between 0 and half of screen size
         let yPosition = arc4random() % UInt32(self.frame.size.height)
@@ -325,20 +331,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         baddy.physicsBody?.categoryBitMask = baddyGroup
         baddy.physicsBody?.contactTestBitMask = dragonGroup
         
-        //print("baddy.position.x \(baddy.position.x)")
-
-        
         movingObjects.addChild(baddy)
+        // Add some sweet particle fx to the dragon
+        baddyTrailParticle!.targetNode = self
+        baddy.addChild(baddyTrailParticle!)
+        
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
+        // Game over if dragon leaves screen
+        if dragon.position.x < 0 || dragon.position.y < 0 {
+            gameOver = 1
+        }
+        
         // Check for game over
         if gameOver == 1 {
+            
+                // Hold / Reset game for next play
+                print("Game over.")
                 gameOverLabel.removeFromParent()
-                
                 movingObjects.speed = 0
+                baddy.removeFromParent()
+                pipe1.removeFromParent()
+                pipe2.removeFromParent()
+                dragon.removeFromParent()
                 gameOverLabel.fontName = "Helvitica"
                 gameOverLabel.fontSize = 30
                 gameOverLabel.text = "Game Over! Tap to play again."
