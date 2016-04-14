@@ -12,6 +12,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // Variables to set up some sweet particle effects
     let dragonSmokeParticle = SKEmitterNode(fileNamed: "DragonSmoke.sks")
+    let fireTrailParticle = SKEmitterNode(fileNamed: "FireSpark.sks")
+
     
     // Variables to store score and game
     var score = 0
@@ -57,7 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Set up world physics
         self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = CGVectorMake(0, -5)
+        self.physicsWorld.gravity = CGVectorMake(0, -2)
         
         self.addChild(movingObjects)
         
@@ -134,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let ground = SKNode() // no texture or sprite
         ground.position = CGPointMake(0,0) // start bottom left
         // Width of screen is ground as rectangle
-        ground.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.size.width, 1))
+        ground.physicsBody = SKPhysicsBody(circleOfRadius: dragon.size.width/2)
         // Ground doesn't react to gravity
         ground.physicsBody?.dynamic = false
         ground.physicsBody?.categoryBitMask = objectGroup
@@ -146,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(GameScene.makePipes), userInfo: nil, repeats: true)
         
         // Timer to spawn baddy
-        _ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameScene.spawnBaddy), userInfo: nil, repeats: true)
+        _ = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(GameScene.spawnBaddy), userInfo: nil, repeats: true)
         
     }
     
@@ -225,6 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == 3 || secondBody.categoryBitMask == 3 {
             if firstBody.categoryBitMask == 3 {
                 print("firstbody fireball collision")
+                score+=1
                 secondBody.node?.removeFromParent()
                 //print("first body group is is \(firstBody.categoryBitMask)")
                 //print("second body group is \(secondBody.categoryBitMask)")
@@ -237,6 +240,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("dragon collided")
             if firstBody.categoryBitMask == 4 || secondBody.categoryBitMask == 4 {
                 print("dragon baddy collision")
+                gameOver=1
             }
         }
         
@@ -268,18 +272,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func launchFireball() {
         
+        // Only one trail particle per parent
+        fireTrailParticle?.removeFromParent()
+        
         // Moving the fireballs
-        let moveFireball = SKAction.moveByX(self.frame.size.width * 3, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
+        let moveFireball = SKAction.moveByX(1 , y: 0, duration: 0)
 
         fireball = SKSpriteNode(texture: fireballTexture)
-        fireball.position = CGPoint(x: dragon.position.x, y: dragon.position.y)
+        fireball.position = CGPoint(x: dragon.position.x+dragon.size.width, y: dragon.position.y)
         fireball.runAction(moveFireball)
-        fireball.physicsBody = SKPhysicsBody(rectangleOfSize: fireball.size)
+        fireball.physicsBody = SKPhysicsBody(circleOfRadius: fireball.size.width)
         fireball.physicsBody?.dynamic = true
+        fireball.physicsBody?.affectedByGravity = false
         fireball.physicsBody?.categoryBitMask = fireballGroup
         fireball.physicsBody?.contactTestBitMask = baddyGroup
         
         movingObjects.addChild(fireball)
+        fireball.physicsBody?.applyImpulse(CGVectorMake(50,0))
+        
+        // Add some sweet particle fx to the dragon
+        fireTrailParticle!.targetNode = self
+        fireball.addChild(fireTrailParticle!)
     }
     
     func spawnBaddy() {
@@ -294,7 +307,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeBaddy = SKAction.removeFromParent()
         let moveAndRemoveBaddy = SKAction.sequence([moveBaddy, removeBaddy])
         
-        baddy.runAction(moveAndRemoveBaddy)
+        baddy.runAction(moveAndRemoveBaddy) 
         baddy.physicsBody = SKPhysicsBody(rectangleOfSize: baddy.size)
         baddy.physicsBody?.dynamic = false
         baddy.physicsBody?.categoryBitMask = baddyGroup
@@ -311,6 +324,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Check for game over
         if gameOver == 1 {
+            gameOverLabel.removeFromParent()
+            
             movingObjects.speed = 0
             gameOverLabel.fontName = "Helvitica"
             gameOverLabel.fontSize = 30
