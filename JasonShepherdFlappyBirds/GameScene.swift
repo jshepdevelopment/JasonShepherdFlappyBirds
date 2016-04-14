@@ -263,6 +263,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Apply an impulse or force to the dragon
             dragon.physicsBody?.applyImpulse(CGVectorMake(0,50))
         }
+        
+        if gameOver == 1 {
+            gameOver = 0
+            gameOverLabel.removeFromParent()
+            baddy.removeFromParent()
+            pipe1.removeFromParent()
+            pipe2.removeFromParent()
+            score = 0
+            scoreLabel.text = "0"
+            dragon.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+            movingObjects.speed = 1
+        }
     }
    
     func swipedRight(sender:UISwipeGestureRecognizer){
@@ -324,15 +336,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Check for game over
         if gameOver == 1 {
-            gameOverLabel.removeFromParent()
+                gameOverLabel.removeFromParent()
+                
+                movingObjects.speed = 0
+                gameOverLabel.fontName = "Helvitica"
+                gameOverLabel.fontSize = 30
+                gameOverLabel.text = "Game Over! Tap to play again."
+                gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+                gameOverLabel.zPosition = 15
+                addChild(gameOverLabel)
             
-            movingObjects.speed = 0
-            gameOverLabel.fontName = "Helvitica"
-            gameOverLabel.fontSize = 30
-            gameOverLabel.text = "Game Over! Tap to play again."
-            gameOverLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-            labelHolder.addChild(gameOverLabel)
-            
-            }
+        }
     }
 }
