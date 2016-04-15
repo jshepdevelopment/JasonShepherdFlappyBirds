@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  JasonShepherdFlappyBirds
 //
-//  Created by Mac on 4/8/16.
+//  Created by Jason Shepherd on 4/8/16.
 //  Copyright (c) 2016 Salt Lake Community College. All rights reserved.
 //
 

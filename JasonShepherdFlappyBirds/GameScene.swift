@@ -29,13 +29,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dragon = SKSpriteNode()
     var fireball = SKSpriteNode()
     var baddy = SKSpriteNode()
-    var background = SKSpriteNode()
+    var bg1 = SKSpriteNode()
+    var bg2 = SKSpriteNode()
+    var bg3 = SKSpriteNode()
     var labelHolder = SKSpriteNode()
     var pipe1 = SKSpriteNode()
     var pipe2 = SKSpriteNode()
-    
-    
-
+ 
     // Collision groups
     let dragonGroup:UInt32 = 1
     let objectGroup:UInt32 =  2
@@ -52,7 +52,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let dragonTexture4 = SKTexture(imageNamed: "frame-4.png")
     let fireballTexture = SKTexture(imageNamed: "fireball.png")
     let baddyTexture = SKTexture(imageNamed: "flappy1.png")
-
+    let bg1Texture = SKTexture(imageNamed: "parallax-mountain-bg.png")
+    let bg2Texture = SKTexture(imageNamed: "parallax-mountain-montain-far.png")
+    let bg3Texture  = SKTexture(imageNamed: "parallax-mountain-mountains.png")
+    
     override func didMoveToView(view: SKView) {
         
         // Set up gesture recognizer
@@ -73,34 +76,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height-70)
         self.addChild(scoreLabel)
         
-        // Set up and configure background texture, sprite node, position vertical stretch
-        let backgroundTexture = SKTexture(imageNamed: "bg.png")
+        // Adding static background first
+        let bg1 = SKSpriteNode(texture: bg1Texture)
+        bg1.size.height = self.size.height
+        bg1.size.width = self.size.width
+        bg1.position = CGPointMake(self.size.width/2, self.size.height/2)
+        bg1.zPosition = -3
+        self.addChild(bg1)
         
-        
-        // Creates the background action which moves x axis by size of background texture every 9 seconds
-        let moveBackground = SKAction.moveByX(-backgroundTexture.size().width, y: 0, duration: 9)
-        // Replaces background to beginning
-        let replaceBackground = SKAction.moveByX(backgroundTexture.size().width, y: 0, duration: 0)
-        // Creates an action that runs both actions in sequence
-        let moveBackgroundForever = SKAction.repeatActionForever(SKAction.sequence([moveBackground, replaceBackground]))
-        
-        for var i:CGFloat = 0; i < 4; i++ {
-            
-            // Assign texture to backround node
-            background = SKSpriteNode(texture: backgroundTexture)
-            
-            // Assign background position
-            background.position = CGPoint(x: backgroundTexture.size().width/2+backgroundTexture.size().width * i, y: CGRectGetMidY(self.frame))
-            
-            // Stretches background vertically
-            background.size.height = self.frame.height
-            
-            // Sets runAction method
-            background.runAction(moveBackgroundForever)
-            background.zPosition = -1
-            movingObjects.addChild(background)
-            
-        }
+        //scrollBackground(bg1Texture, scrollSpeed: 0.50, bgzPosition: -3)
+        scrollBackground(bg2Texture, scrollSpeed: 0.05, bgzPosition: -2)
+        scrollBackground(bg3Texture, scrollSpeed: 0.01, bgzPosition: -1)
         
         // Create animation object by defining images in an array to display every tenth of a second
         let animation = SKAction.animateWithTextures([dragonTexture1, dragonTexture2, dragonTexture3, dragonTexture4], timePerFrame: 0.1)
@@ -120,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Add physics to bird
         dragon.physicsBody = SKPhysicsBody(circleOfRadius: dragon.size.width/2)
         // React to gravity
-        dragon.physicsBody?.dynamic = true
+        dragon.physicsBody?.dynamic = false
         // Don't spin around
         dragon.physicsBody?.allowsRotation = false
         
@@ -137,7 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Timer to call makePipes
         _ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(GameScene.makePipes), userInfo: nil, repeats: true)
-        
+        makePipes()
         // Timer to spawn baddy
         _ = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(GameScene.spawnBaddy), userInfo: nil, repeats: true)
         
@@ -149,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Pipe gap
         let gapHeight = dragon.size.height * 4
         let gap = SKNode()
-        
+       
         // Assign nodes here to increase speed
         pipe1 = SKSpriteNode(texture: pipe1Texture)
         pipe2 = SKSpriteNode(texture: pipe2Texture)
@@ -161,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 4
         
         // Moving the pipes
-        let movePipes = SKAction.moveByX(-self.frame.size.width * 2, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
+        let movePipes = SKAction.moveByX(-self.frame.size.width*2, y: 0, duration: NSTimeInterval(self.frame.size.width / 100))
         
         // Removing pipes
         let removePipes = SKAction.removeFromParent()
@@ -169,7 +155,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Combine moving and removing pipes
         let moveAndRemovePipes = SKAction.sequence([movePipes, removePipes])
         
-        pipe1.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipe1.size.height / 2 + gapHeight / 2 + pipeOffset)
+        //pipe1.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipe1.size.height / 2 + gapHeight / 2 + pipeOffset)
+        
+        pipe1.position = CGPointMake(CGRectGetMidX(self.frame) + self.frame.size.width, CGRectGetMidY(self.frame) + pipe1.size.height / 2 + gapHeight / 2 + pipeOffset)
         pipe1.runAction(moveAndRemovePipes)
         pipe1.physicsBody = SKPhysicsBody(rectangleOfSize: pipe1.size)
         pipe1.physicsBody?.dynamic = false
@@ -177,7 +165,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pipe1.physicsBody?.contactTestBitMask = fireballGroup
         movingObjects.addChild(pipe1)
 
-        pipe2.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) - pipe2.size.height / 2 - gapHeight / 2 + pipeOffset)
+        //pipe2.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) - pipe2.size.height / 2 - gapHeight / 2 + pipeOffset)
+        pipe2.position = CGPointMake(CGRectGetMidX(self.frame) + self.frame.size.width, CGRectGetMidY(self.frame) - pipe2.size.height / 2 - gapHeight / 2 + pipeOffset)
         pipe2.runAction(moveAndRemovePipes)
         pipe2.physicsBody = SKPhysicsBody(rectangleOfSize: pipe2.size)
         pipe2.physicsBody?.dynamic = false
@@ -187,7 +176,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Make a scoring gap
 
-        gap.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipeOffset)
+        //gap.position = CGPoint(x: CGRectGetMidX(self.frame) + self.frame.size.width, y: CGRectGetMidY(self.frame) + pipeOffset)
+        gap.position = CGPointMake(CGRectGetMidX(self.frame) + self.frame.size.width, CGRectGetMidY(self.frame) + pipeOffset)
         gap.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(pipe1.size.width, gapHeight))
         gap.runAction(moveAndRemovePipes)
         gap.physicsBody?.dynamic = false
@@ -276,7 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score = 0
             scoreLabel.text = "0"
             dragon.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-            addChild(dragon)
+            dragon.physicsBody?.affectedByGravity = true
             movingObjects.speed = 1
         }
     }
@@ -295,7 +285,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let moveFireball = SKAction.moveByX(0.01 , y: 0, duration: 0)
 
         fireball = SKSpriteNode(texture: fireballTexture)
-        fireball.position = CGPoint(x: dragon.position.x+0.01, y: dragon.position.y)
+        fireball.position = CGPoint(x: dragon.position.x+32, y: dragon.position.y)
         fireball.runAction(moveFireball)
         fireball.physicsBody = SKPhysicsBody(circleOfRadius: fireball.size.width)
         fireball.physicsBody?.dynamic = true
@@ -356,7 +346,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 baddy.removeFromParent()
                 pipe1.removeFromParent()
                 pipe2.removeFromParent()
-                dragon.removeFromParent()
+                dragon.physicsBody?.affectedByGravity = false
                 gameOverLabel.fontName = "Helvitica"
                 gameOverLabel.fontSize = 30
                 gameOverLabel.text = "Game Over! Tap to play again."
@@ -364,6 +354,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameOverLabel.zPosition = 15
                 addChild(gameOverLabel)
             
+        }
+        
+    }
+    
+    func scrollBackground(backgroundTexture: SKTexture, scrollSpeed: CGFloat, bgzPosition: CGFloat) {
+        
+        //make your SKActions that will move the image across the screen. this one goes from right to left.
+        let moveBackground = SKAction.moveByX(-backgroundTexture.size().width, y: 0, duration: NSTimeInterval(scrollSpeed * backgroundTexture.size().width))
+        
+        //This resets the image to begin again on the right side.
+        let resetBackGround = SKAction.moveByX(backgroundTexture.size().width, y: 0, duration: 0.0)
+        
+        //this moves the image run forever and put the action in the correct sequence.
+        let moveBackgoundForever = SKAction.repeatActionForever(SKAction.sequence([moveBackground, resetBackGround]))
+        
+        //then run a for loop to make the images line up end to end.
+        for var i:CGFloat = 0; i<2 + self.frame.size.width / (backgroundTexture.size().width); ++i {
+            let sprite = SKSpriteNode(texture: backgroundTexture)
+            sprite.yScale = 2.0
+            sprite.position = CGPointMake(i * sprite.size.width, sprite.size.height / 2)
+            sprite.zPosition = bgzPosition
+        
+            sprite.runAction(moveBackgoundForever)
+            
+            self.addChild(sprite)
         }
     }
 }
