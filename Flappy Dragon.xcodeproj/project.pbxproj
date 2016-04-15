@@ -17,7 +17,6 @@
 		040EFDDC1CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040EFDDB1CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.swift */; };
 		040EFDE71CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040EFDE61CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.swift */; };
 		040EFDFC1CB8071200778918 /* flappy1.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDF71CB8071200778918 /* flappy1.png */; };
-		040EFDFD1CB8071200778918 /* flappy2.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFDF81CB8071200778918 /* flappy2.png */; };
 		040EFE031CB83A6400778918 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE011CB83A6400778918 /* spark.png */; };
 		040EFE081CB93CD800778918 /* frame-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE041CB93CD800778918 /* frame-1.png */; };
 		040EFE091CB93CD800778918 /* frame-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE051CB93CD800778918 /* frame-2.png */; };
@@ -25,7 +24,6 @@
 		040EFE0B1CB93CD800778918 /* frame-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE071CB93CD800778918 /* frame-4.png */; };
 		040EFE191CBAB57700778918 /* DragonSmoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 040EFE181CBAB57700778918 /* DragonSmoke.sks */; };
 		047098291CBBF30100765384 /* fireball.png in Resources */ = {isa = PBXBuildFile; fileRef = 047098281CBBF30100765384 /* fireball.png */; };
-		048CC66F1CC02D1A00DEA47A /* Magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = 048CC66E1CC02D1A00DEA47A /* Magic.sks */; };
 		048CC6A41CC1704900DEA47A /* tower1.png in Resources */ = {isa = PBXBuildFile; fileRef = 048CC6A21CC1704900DEA47A /* tower1.png */; };
 		048CC6A51CC1704900DEA47A /* tower2.png in Resources */ = {isa = PBXBuildFile; fileRef = 048CC6A31CC1704900DEA47A /* tower2.png */; };
 		048CC6AD1CC182A300DEA47A /* parallax-mountain-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 048CC6AC1CC182A300DEA47A /* parallax-mountain-bg.png */; };
@@ -54,7 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		040EFDBF1CB7FA5700778918 /* JasonShepherdFlappyBirds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JasonShepherdFlappyBirds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		040EFDBF1CB7FA5700778918 /* Flappy Dragon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flappy Dragon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		040EFDC21CB7FA5700778918 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		040EFDC41CB7FA5700778918 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		040EFDC61CB7FA5700778918 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -63,14 +61,13 @@
 		040EFDCD1CB7FA5700778918 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		040EFDD01CB7FA5700778918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		040EFDD21CB7FA5700778918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		040EFDD71CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JasonShepherdFlappyBirdsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		040EFDD71CB7FA5700778918 /* Flappy Dragon.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flappy Dragon.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		040EFDDB1CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JasonShepherdFlappyBirdsTests.swift; sourceTree = "<group>"; };
 		040EFDDD1CB7FA5700778918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		040EFDE21CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JasonShepherdFlappyBirdsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		040EFDE21CB7FA5700778918 /* Flappy Dragon.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flappy Dragon.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		040EFDE61CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JasonShepherdFlappyBirdsUITests.swift; sourceTree = "<group>"; };
 		040EFDE81CB7FA5700778918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		040EFDF71CB8071200778918 /* flappy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappy1.png; sourceTree = "<group>"; };
-		040EFDF81CB8071200778918 /* flappy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flappy2.png; sourceTree = "<group>"; };
 		040EFE011CB83A6400778918 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		040EFE041CB93CD800778918 /* frame-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-1.png"; sourceTree = "<group>"; };
 		040EFE051CB93CD800778918 /* frame-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-2.png"; sourceTree = "<group>"; };
@@ -78,7 +75,6 @@
 		040EFE071CB93CD800778918 /* frame-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frame-4.png"; sourceTree = "<group>"; };
 		040EFE181CBAB57700778918 /* DragonSmoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DragonSmoke.sks; sourceTree = "<group>"; };
 		047098281CBBF30100765384 /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireball.png; sourceTree = "<group>"; };
-		048CC66E1CC02D1A00DEA47A /* Magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Magic.sks; sourceTree = "<group>"; };
 		048CC6A21CC1704900DEA47A /* tower1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower1.png; sourceTree = "<group>"; };
 		048CC6A31CC1704900DEA47A /* tower2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower2.png; sourceTree = "<group>"; };
 		048CC6AC1CC182A300DEA47A /* parallax-mountain-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "parallax-mountain-bg.png"; sourceTree = "<group>"; };
@@ -117,7 +113,6 @@
 		040EFDB61CB7FA5600778918 = {
 			isa = PBXGroup;
 			children = (
-				048CC66E1CC02D1A00DEA47A /* Magic.sks */,
 				04A1AFF81CBFDC8E009559EE /* FireSpark.sks */,
 				040EFE181CBAB57700778918 /* DragonSmoke.sks */,
 				040EFE011CB83A6400778918 /* spark.png */,
@@ -131,9 +126,9 @@
 		040EFDC01CB7FA5700778918 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				040EFDBF1CB7FA5700778918 /* JasonShepherdFlappyBirds.app */,
-				040EFDD71CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.xctest */,
-				040EFDE21CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.xctest */,
+				040EFDBF1CB7FA5700778918 /* Flappy Dragon.app */,
+				040EFDD71CB7FA5700778918 /* Flappy Dragon.xctest */,
+				040EFDE21CB7FA5700778918 /* Flappy Dragon.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,7 +149,6 @@
 				040EFE061CB93CD800778918 /* frame-3.png */,
 				040EFE071CB93CD800778918 /* frame-4.png */,
 				040EFDF71CB8071200778918 /* flappy1.png */,
-				040EFDF81CB8071200778918 /* flappy2.png */,
 				040EFDC21CB7FA5700778918 /* AppDelegate.swift */,
 				040EFDC41CB7FA5700778918 /* GameScene.sks */,
 				040EFDC61CB7FA5700778918 /* GameScene.swift */,
@@ -188,9 +182,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		040EFDBE1CB7FA5700778918 /* JasonShepherdFlappyBirds */ = {
+		040EFDBE1CB7FA5700778918 /* Flappy Dragon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 040EFDEB1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirds" */;
+			buildConfigurationList = 040EFDEB1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "Flappy Dragon" */;
 			buildPhases = (
 				040EFDBB1CB7FA5700778918 /* Sources */,
 				040EFDBC1CB7FA5700778918 /* Frameworks */,
@@ -200,14 +194,14 @@
 			);
 			dependencies = (
 			);
-			name = JasonShepherdFlappyBirds;
+			name = "Flappy Dragon";
 			productName = JasonShepherdFlappyBirds;
-			productReference = 040EFDBF1CB7FA5700778918 /* JasonShepherdFlappyBirds.app */;
+			productReference = 040EFDBF1CB7FA5700778918 /* Flappy Dragon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		040EFDD61CB7FA5700778918 /* JasonShepherdFlappyBirdsTests */ = {
+		040EFDD61CB7FA5700778918 /* Flappy DragonTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 040EFDEE1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirdsTests" */;
+			buildConfigurationList = 040EFDEE1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "Flappy DragonTests" */;
 			buildPhases = (
 				040EFDD31CB7FA5700778918 /* Sources */,
 				040EFDD41CB7FA5700778918 /* Frameworks */,
@@ -218,14 +212,14 @@
 			dependencies = (
 				040EFDD91CB7FA5700778918 /* PBXTargetDependency */,
 			);
-			name = JasonShepherdFlappyBirdsTests;
+			name = "Flappy DragonTests";
 			productName = JasonShepherdFlappyBirdsTests;
-			productReference = 040EFDD71CB7FA5700778918 /* JasonShepherdFlappyBirdsTests.xctest */;
+			productReference = 040EFDD71CB7FA5700778918 /* Flappy Dragon.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		040EFDE11CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests */ = {
+		040EFDE11CB7FA5700778918 /* Flappy DragonUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 040EFDF11CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirdsUITests" */;
+			buildConfigurationList = 040EFDF11CB7FA5700778918 /* Build configuration list for PBXNativeTarget "Flappy DragonUITests" */;
 			buildPhases = (
 				040EFDDE1CB7FA5700778918 /* Sources */,
 				040EFDDF1CB7FA5700778918 /* Frameworks */,
@@ -236,9 +230,9 @@
 			dependencies = (
 				040EFDE41CB7FA5700778918 /* PBXTargetDependency */,
 			);
-			name = JasonShepherdFlappyBirdsUITests;
+			name = "Flappy DragonUITests";
 			productName = JasonShepherdFlappyBirdsUITests;
-			productReference = 040EFDE21CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests.xctest */;
+			productReference = 040EFDE21CB7FA5700778918 /* Flappy Dragon.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +261,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 040EFDBA1CB7FA5600778918 /* Build configuration list for PBXProject "JasonShepherdFlappyBirds" */;
+			buildConfigurationList = 040EFDBA1CB7FA5600778918 /* Build configuration list for PBXProject "Flappy Dragon" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -280,9 +274,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				040EFDBE1CB7FA5700778918 /* JasonShepherdFlappyBirds */,
-				040EFDD61CB7FA5700778918 /* JasonShepherdFlappyBirdsTests */,
-				040EFDE11CB7FA5700778918 /* JasonShepherdFlappyBirdsUITests */,
+				040EFDBE1CB7FA5700778918 /* Flappy Dragon */,
+				040EFDD61CB7FA5700778918 /* Flappy DragonTests */,
+				040EFDE11CB7FA5700778918 /* Flappy DragonUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -297,10 +291,8 @@
 				048CC6AF1CC182B200DEA47A /* parallax-mountain-montain-far.png in Resources */,
 				040EFE0A1CB93CD800778918 /* frame-3.png in Resources */,
 				048CC6A51CC1704900DEA47A /* tower2.png in Resources */,
-				040EFDFD1CB8071200778918 /* flappy2.png in Resources */,
 				04A1AFF91CBFDC8E009559EE /* FireSpark.sks in Resources */,
 				048CC6B31CC182F300DEA47A /* parallax-mountain-trees.png in Resources */,
-				048CC66F1CC02D1A00DEA47A /* Magic.sks in Resources */,
 				040EFDC51CB7FA5700778918 /* GameScene.sks in Resources */,
 				040EFE0B1CB93CD800778918 /* frame-4.png in Resources */,
 				048CC6A41CC1704900DEA47A /* tower1.png in Resources */,
@@ -365,12 +357,12 @@
 /* Begin PBXTargetDependency section */
 		040EFDD91CB7FA5700778918 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 040EFDBE1CB7FA5700778918 /* JasonShepherdFlappyBirds */;
+			target = 040EFDBE1CB7FA5700778918 /* Flappy Dragon */;
 			targetProxy = 040EFDD81CB7FA5700778918 /* PBXContainerItemProxy */;
 		};
 		040EFDE41CB7FA5700778918 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 040EFDBE1CB7FA5700778918 /* JasonShepherdFlappyBirds */;
+			target = 040EFDBE1CB7FA5700778918 /* Flappy Dragon */;
 			targetProxy = 040EFDE31CB7FA5700778918 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -485,7 +477,7 @@
 				INFOPLIST_FILE = JasonShepherdFlappyBirds/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.slcc.csis2640.JasonShepherdFlappyBirds;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Flappy Dragon";
 			};
 			name = Debug;
 		};
@@ -496,7 +488,7 @@
 				INFOPLIST_FILE = JasonShepherdFlappyBirds/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.slcc.csis2640.JasonShepherdFlappyBirds;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Flappy Dragon";
 			};
 			name = Release;
 		};
@@ -508,8 +500,8 @@
 				INFOPLIST_FILE = JasonShepherdFlappyBirdsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.slcc.csis2640.JasonShepherdFlappyBirdsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JasonShepherdFlappyBirds.app/JasonShepherdFlappyBirds";
+				PRODUCT_NAME = "Flappy Dragon";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flappy Dragon.app/Flappy Dragon";
 			};
 			name = Debug;
 		};
@@ -520,8 +512,8 @@
 				INFOPLIST_FILE = JasonShepherdFlappyBirdsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.slcc.csis2640.JasonShepherdFlappyBirdsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JasonShepherdFlappyBirds.app/JasonShepherdFlappyBirds";
+				PRODUCT_NAME = "Flappy Dragon";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flappy Dragon.app/Flappy Dragon";
 			};
 			name = Release;
 		};
@@ -532,7 +524,7 @@
 				INFOPLIST_FILE = JasonShepherdFlappyBirdsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.slcc.csis2640.JasonShepherdFlappyBirdsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Flappy Dragon";
 				TEST_TARGET_NAME = JasonShepherdFlappyBirds;
 			};
 			name = Debug;
@@ -543,7 +535,7 @@
 				INFOPLIST_FILE = JasonShepherdFlappyBirdsUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.slcc.csis2640.JasonShepherdFlappyBirdsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Flappy Dragon";
 				TEST_TARGET_NAME = JasonShepherdFlappyBirds;
 			};
 			name = Release;
@@ -551,7 +543,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		040EFDBA1CB7FA5600778918 /* Build configuration list for PBXProject "JasonShepherdFlappyBirds" */ = {
+		040EFDBA1CB7FA5600778918 /* Build configuration list for PBXProject "Flappy Dragon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				040EFDE91CB7FA5700778918 /* Debug */,
@@ -560,7 +552,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		040EFDEB1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirds" */ = {
+		040EFDEB1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "Flappy Dragon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				040EFDEC1CB7FA5700778918 /* Debug */,
@@ -569,7 +561,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		040EFDEE1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirdsTests" */ = {
+		040EFDEE1CB7FA5700778918 /* Build configuration list for PBXNativeTarget "Flappy DragonTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				040EFDEF1CB7FA5700778918 /* Debug */,
@@ -578,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		040EFDF11CB7FA5700778918 /* Build configuration list for PBXNativeTarget "JasonShepherdFlappyBirdsUITests" */ = {
+		040EFDF11CB7FA5700778918 /* Build configuration list for PBXNativeTarget "Flappy DragonUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				040EFDF21CB7FA5700778918 /* Debug */,

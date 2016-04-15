@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "040EFDBE1CB7FA5700778918"
-               BuildableName = "JasonShepherdFlappyBirds.app"
-               BlueprintName = "JasonShepherdFlappyBirds"
-               ReferencedContainer = "container:JasonShepherdFlappyBirds.xcodeproj">
+               BuildableName = "Flappy Dragon.app"
+               BlueprintName = "Flappy Dragon"
+               ReferencedContainer = "container:Flappy Dragon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "040EFDD61CB7FA5700778918"
-               BuildableName = "JasonShepherdFlappyBirdsTests.xctest"
-               BlueprintName = "JasonShepherdFlappyBirdsTests"
-               ReferencedContainer = "container:JasonShepherdFlappyBirds.xcodeproj">
+               BuildableName = "Flappy Dragon.xctest"
+               BlueprintName = "Flappy DragonTests"
+               ReferencedContainer = "container:Flappy Dragon.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "040EFDE11CB7FA5700778918"
-               BuildableName = "JasonShepherdFlappyBirdsUITests.xctest"
-               BlueprintName = "JasonShepherdFlappyBirdsUITests"
-               ReferencedContainer = "container:JasonShepherdFlappyBirds.xcodeproj">
+               BuildableName = "Flappy Dragon.xctest"
+               BlueprintName = "Flappy DragonUITests"
+               ReferencedContainer = "container:Flappy Dragon.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "040EFDBE1CB7FA5700778918"
-            BuildableName = "JasonShepherdFlappyBirds.app"
-            BlueprintName = "JasonShepherdFlappyBirds"
-            ReferencedContainer = "container:JasonShepherdFlappyBirds.xcodeproj">
+            BuildableName = "Flappy Dragon.app"
+            BlueprintName = "Flappy Dragon"
+            ReferencedContainer = "container:Flappy Dragon.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "040EFDBE1CB7FA5700778918"
-            BuildableName = "JasonShepherdFlappyBirds.app"
-            BlueprintName = "JasonShepherdFlappyBirds"
-            ReferencedContainer = "container:JasonShepherdFlappyBirds.xcodeproj">
+            BuildableName = "Flappy Dragon.app"
+            BlueprintName = "Flappy Dragon"
+            ReferencedContainer = "container:Flappy Dragon.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "040EFDBE1CB7FA5700778918"
-            BuildableName = "JasonShepherdFlappyBirds.app"
-            BlueprintName = "JasonShepherdFlappyBirds"
-            ReferencedContainer = "container:JasonShepherdFlappyBirds.xcodeproj">
+            BuildableName = "Flappy Dragon.app"
+            BlueprintName = "Flappy Dragon"
+            ReferencedContainer = "container:Flappy Dragon.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
